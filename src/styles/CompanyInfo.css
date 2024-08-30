@@ -1,0 +1,32 @@
+/* src/styles/CompanyInfo.css */
+
+.company-info {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #8ce704;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.company-info h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.company-info p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #555;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .company-info {
+        margin: 20px;
+        padding: 20px;
+    }
+}
