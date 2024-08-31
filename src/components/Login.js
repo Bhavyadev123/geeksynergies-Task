@@ -1,56 +1,81 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/login.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Login() {
-    const [credentials, setCredentials] = useState({ name: '', password: '' });
-    const [error, setError] = useState('');
-    const navigate = useNavigate();
+const Login = ({ setIsLoggedIn }) => {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handleChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    };
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const storedData = localStorage.getItem(credentials.name);
-        if (storedData) {
-            const user = JSON.parse(storedData);
-            if (user.password === credentials.password) {
-                alert('Login successful!'); // Success alert
-                navigate('/dashboard');
-            } else {
-                setError('Invalid Credentials');
-            }
-        } else {
-            setError('Invalid Credentials');
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const user = users.find(user => user.name === name && user.password === password);
+
+    if (user) {
+      toast.success('Login successful!', {
+        onClose: () => {
+          setIsLoggedIn(true);
+          navigate('/dashboard');
         }
-    };
+      });
+    } else {
+      toast.error('Invalid Credentials');
+    }
+  };
 
-    return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <input
+  return (
+    <div className="container mt-5">
+      <ToastContainer />
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card border-primary">
+            <div className="card-body">
+              <h2 className="card-title text-center mb-4">Login</h2>
+              <form onSubmit={handleLogin}>
+                <div className="form-group mb-3">
+                  <label htmlFor="name">Name</label>
+                  <input
                     type="text"
-                    name="name"
-                    placeholder="Name"
-                    onChange={handleChange}
+                    className="form-control"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
-                />
-                <input
+                  />
+                </div>
+                <div className="form-group mb-3">
+                  <label htmlFor="password">Password</label>
+                  <input
                     type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}
+                    className="form-control"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
-                />
-                <button type="submit">Login</button>
-            </form>
-            {error && <p className="error">{error}</p>}
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary w-100 mb-3">
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  onClick={() => navigate('/')}
+                >
+                  Don't have an account? Signup
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
 
 export default Login;

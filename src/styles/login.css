@@ -1,82 +1,135 @@
 /* src/styles/login.css */
 
-.login-container {
-    max-width: 400px;
-    margin: 50px auto; /* Center the container horizontally */
-    padding: 30px;
-    background-color: #c5ee0e;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+/* Basic reset */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, form, label {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center align children horizontally */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+/* Card */
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 500;
     color: #007bff;
-    font-size: 24px;
 }
 
-.login-container form {
-    width: 100%; /* Ensure form takes full width of container */
+/* Form */
+.form-group {
+    margin-bottom: 20px;
 }
 
-.login-container input {
-    width: 80%; /* Make inputs fill container width */
-    margin-bottom: 15px;
-    margin-left:15px;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
+.form-group label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control {
+    padding: 10px;
+    font-size: 1rem;
     border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #ced4da;
 }
 
-.login-container input:focus {
-    border-color: #007bff;
+.form-control:focus {
+    border-color: #80bdff;
+    outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.login-container button {
-    width: 40%;
-    margin-left:100px; /* Full width button */
-    padding: 10px 20px; /* Smaller padding */
-    background-color: #28a745;
-    color: white;
-    border: none;
+/* Buttons */
+.btn {
+    padding: 10px;
+    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease-in-out;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.login-container button:hover {
-    background-color: #218838;
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
 }
 
-.login-container .error {
-    color: red;
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
     margin-top: 10px;
-    text-align: center;
-    font-weight: bolder;
 }
 
-/* Responsive Styles */
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .login-container {
-        margin: 20px;
+    .card {
         padding: 20px;
     }
 
-    .login-container h2 {
-        font-size: 20px;
+    .form-control {
+        padding: 8px;
+        font-size: 0.9rem;
     }
 
-    .login-container input, .login-container button {
-        font-size: 14px; /* Adjust font size for smaller screens */
+    .btn {
+        padding: 8px;
+        font-size: 0.9rem;
     }
+}
+
+@media (max-width: 576px) {
+    .card {
+        padding: 15px;
+    }
+
+    .form-control {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ToastContainer Customization */
+.Toastify__toast {
+    border-radius: 10px !important;
+}
+
+.Toastify__toast--success {
+    background-color: #28a745 !important;
+    color:white;
+}
+
+.Toastify__toast--error {
+    background-color: #dc3545 !important;
+    color:white;
 }
